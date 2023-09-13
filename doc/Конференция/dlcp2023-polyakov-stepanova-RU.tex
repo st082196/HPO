@@ -1,0 +1,107 @@
+\documentclass[reprint,
+superscriptaddress,
+amsmath,amssymb,aps,showkeys,showpacs,
+twoside,final,secnumarabic,%raggedbottom,
+nofootinbib]{revtex4-2}
+
+%======Размеры бумаги и~текста=======
+\usepackage[paperwidth=205mm,paperheight=290mm,top=17mm,bottom=25mm,
+%,16mm,% inner=18mm,% outer=15mm,
+inner=17mm,outer=17mm,
+twoside]{geometry}
+
+%================Пакеты=====================
+\usepackage{cmap} % Улучшенный поиск %русских слов в~полученном pdf-файле
+\defaulthyphenchar=127 % Если стоит до fontenc, то переносы не впишутся в~выделяемый текст при копировании его в~буфер обмена
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[cp1251]{inputenc}
+\usepackage[russian,english]{babel}
+\usepackage{color}
+%\usepackage{physics}
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm} % bold math
+\usepackage[unicode=true,colorlinks=true,linkcolor=magenta, urlcolor=blue, citecolor = blue,breaklinks]{hyperref}
+% add hypertext capabilities
+\usepackage{multirow}
+\usepackage{url}
+\def\UrlBreaks{\do\/\do-}
+\usepackage{breakurl}
+\newcommand\sbullet[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}}
+%========Для работы на компе==================
+%\usepackage{../latex/breakurl}
+%\graphicspath{{../figures/}}
+\DeclareGraphicsExtensions{.eps}
+
+%===========Счетчики================
+\newcount\issue
+\newcount\Vol
+\newcount\numb
+% ======Колонтитулы==============
+\headheight=1.5cm
+\usepackage{fancyhdr} %this packages %provides fancy up and bottom of page
+\pagestyle{fancy}
+\fancyhead{}\fancyfoot{}
+%\footheight=0.5cm
+\fancyfoot[LO]{}
+\fancyfoot[CO]{\small{\numb--\thepage}}
+\fancyfoot[RO]{}
+\fancyfoot[LE]{}
+\fancyfoot[CE]{\small{\numb--\thepage}}
+\fancyfoot[RE]{}
+\fancyhead[CO]{\normalsize\textrm{Moscow University Physics Bulletin \Vol(\the\issue)},~\numb~(\the\year)}
+% {текст-центр-нечетные}
+
+\fancyhead[CE]{\normalsize\selectlanguage{english}{Modern Machine Learning Methods}}
+% {текст-центр-четные}
+
+%=======Ссылка на почту=======
+\newcommand\mailto[1]{\href{mailto:#1}{#1}}
+%============================
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thetable{\arabic{table}}
+
+%============================
+\year2023 \issue7
+%\sheets999
+\def\Vol{\textbf{78}}
+\def\numb{x}
+\setcounter{page}{1}
+%============================
+
+\begin{document}
+
+%====== Начало шапки статьи  ============
+\title{MODERN MACHINE LEARNING METHODS\\[20pt]
+Выбор гиперпараметров нейронной сети для решения \\
+задач большой размерности в случае уравнения Гельмгольца}
+
+\def\address{Кафедра вычислительной физики, Санкт-Петербургский государственный университет,\\
+	Россия, 199034, Санкт-Петербург, ул.Ульяновская, 1.}
+
+\author{\firstname{Д.Н.}~\surname{Поляков}}
+\email[E-mail: ]{st082196@student.spbu.ru}
+\affiliation{\address}
+\author{\firstname{М.М.}~\surname{Степанова}}
+\email[E-mail: ]{m.stepanova@spbu.ru}
+\affiliation{\address}
+
+\received{xx.xx.2023}
+\revised{xx.xx.2023}
+\accepted{xx.xx.2023}
+
+\begin{abstract}
+В работе исследуется эффективность различных методов подбора гиперпараметров для Physics-Informed Neural Network (PINN) на примере решения многомерного уравнения Гельмгольца. Нейронная сеть была построена на фреймворке PyTorch без использования специальных библиотек для PINN-сетей. Исследовано влияние гиперпараметров на производительность нейросети и проведена автоматическая оптимизация со сравнением популярных алгоритмов поиска и планировщиков обучения.
+
+В качестве инструмента для оптимизации гиперпараметров (HPO) был выбран фреймворк Ray Tune с открытым исходным кодом, предоставляющий единый интерфейс для работы с множеством HPO-пакетов. Рассмотрены алгоритмы случайного поиска, байесовского поиска, основанного на дереве парзеновских оценок (TPE) в реализациях hyperopt и hpbandster, и алгоритм ранней остановки (ASHA). Использование алгоритма ранней остановки позволяет существенно быстрее получить лучшую конфигурацию гиперпараметров при любой размерности задачи.
+\end{abstract}
+
+%\pacs{Suggested PACS}\par
+\keywords{HPO, PINN, PyTorch, Ray Tune, уравнение Гельмгольца\\[5pt]}
+%DOI:  
+
+\maketitle
+\thispagestyle{fancy}
+
+\end{document}
